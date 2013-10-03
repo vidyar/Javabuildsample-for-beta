@@ -1,4 +1,6 @@
 language: java
 java:
-    -"1.7"
+    - 1.7
 build_environment : Ubuntu 12.04LTE
+env:
+  - CI_REPORTS=shippable/testresults COVERAGE_REPORTS=shippable/codecoverage
