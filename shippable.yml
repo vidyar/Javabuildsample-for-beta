@@ -1,5 +1,10 @@
 language: java
-install: ant deps
-before_install: ant build test coverage -f:.\JUnitSample\JUnitSample.Tests\default.build
-notifications:
-  email: false
+java:
+    -"1.7"
+build_environment : Ubuntu 12.04LTE
+before_script: 
+ - cmd /c "IF NOT EXIST shippable mkdir shippable"
+ - cmd /c "IF NOT EXIST shippable\testresults mkdir shippable\testresults"
+ - cmd /c "IF NOT EXIST shippable\codecoverage mkdir shippable\codecoverage"
+script:
+ - ant math
