@@ -1,0 +1,5 @@
+language: java
+install: ant deps
+before_install: ant build test coverage -f:.\JUnitSample\JUnitSample.Tests\default.build
+notifications:
+  email: false
