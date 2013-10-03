@@ -1,5 +1,6 @@
 language: java
 build_environment : Ubuntu 12.04LTE
 before_install: ant build test coverage -f:.\src\TestMath.java
+install: ant deps
 env:
   - CI_REPORTS=shippable/testresults COVERAGE_REPORTS=shippable/codecoverage
