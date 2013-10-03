@@ -7,4 +7,7 @@ before_script:
  - cmd /c "IF NOT EXIST shippable\testresults mkdir shippable\testresults"
  - cmd /c "IF NOT EXIST shippable\codecoverage mkdir shippable\codecoverage"
 script:
- - ant math
+ - ant math.java
+ - cmd /c "src\TestMath.java" -output:shippable\codecoverage\coveragereport.xml -log:All"
+
+
