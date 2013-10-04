@@ -1,8 +1,11 @@
 language: java
 build_environment : Ubuntu 12.04LTE
-before_script:
- - cmd /c "IF NOT EXIST shippable mkdir shippable"
- - cmd /c "IF NOT EXIST shippable\testresults mkdir shippable\testresults" 
- - cmd /c "IF NOT EXIST shippable\codecoverage mkdir shippable\codecoverage"
- - cmd /c ".nuget\nuget.exe install .nuget\packages.config -Output packages"
+env:
+  - CI_REPORTS=qhode/testresults COVERAGE_REPORTS=qhode/codecoverage
 script: ant Math.java
+notifications:
+  email:
+    recipients:
+      - vidyar@qhode.com
+    on_success:  change
+    on_failure:  always  
