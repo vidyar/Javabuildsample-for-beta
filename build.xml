@@ -1,10 +1,10 @@
-<project name="Java-sampleTests" default="dist" basedir=".">
+<project name="SampleJUnitTests" default="dist" basedir=".">
     <description>
         Sample JUnit Tests
     </description>
   <!-- set global properties for this build -->
 
-  <property name="project_name" value="Java-sample"/>
+  <property name="project_name" value="junitSamples"/>
   <property name="src" location="src"/>
   <property name="build" location="bin"/>
   <property name="dist"  location="dist"/>
