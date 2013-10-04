@@ -2,6 +2,7 @@ language: java
 build_environment : Ubuntu 12.04LTE
 jdk:
   - oraclejdk7
+  - openjdk7
 before_install: ant Math.java
 install: ant deps
 env:
@@ -11,4 +12,4 @@ notifications:
     recipients:
       - vidya@shippable.com
     on_success:  change
-    on_failure:  always  
+    on_failure:  change 
