@@ -69,6 +69,8 @@
 		<junitreport todir="${reports}">
 		  <fileset dir="${test_reports}/">
 		    <include name="TEST-*.xml"/>
+		     <fileset dir="${coverage_reports}/">
+		    <include name="Coverage-*.xml"/>
 		  </fileset>
 		  <report format="frames" todir="${reports}\html\"/>
 		</junitreport>
