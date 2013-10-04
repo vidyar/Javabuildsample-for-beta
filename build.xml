@@ -10,9 +10,9 @@
   <property name="dist"  location="dist"/>
   <property name="lib"  location="lib"/>
   <property name="res"  location="res"/>
-  <property name="reports" location="../shippable"/>
-  <property name="test_reports" location="../shippable/testresults" />
-  <property name="coverage_reports" location="../shippable/codecoverage" />
+  <property name="reports" location="shippable"/>
+  <property name="test_reports" location="shippable/testresults" />
+  <property name="coverage_reports" location="shippable/codecoverage" />
   
   <!-- the names of various distributable files -->
   <property name="jar_name" value="${project_name}.jar"/>
