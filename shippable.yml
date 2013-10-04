@@ -1,9 +1,9 @@
 language: java
 build_environment : Ubuntu 12.04LTE
+before_install: ant Math.java
+install: ant deps
 env:
   - CI_REPORTS=shippable/testresults COVERAGE_REPORTS=shippable/codecoverage
-before_install: ant Math.java
-install :ant deps
 notifications:
   email:
     recipients:
