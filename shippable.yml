@@ -1,5 +1,8 @@
 language: java
 build_environment : Ubuntu 12.04LTE
+jdk:
+  - oraclejdk7
+  - openjdk6
 before_install: ant Math.java
 install: ant deps
 env:
