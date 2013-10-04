@@ -1,4 +1,4 @@
-<project name="SampleJUnitTests" default="dist" basedir=".">
+<project name="Java-sampleTests" default="dist" basedir=".">
     <description>
         Sample JUnit Tests
     </description>
