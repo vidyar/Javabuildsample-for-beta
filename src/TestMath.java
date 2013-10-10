@@ -20,6 +20,15 @@ public class TestMath extends TestCase {
   	sum = Math.add(num1, num2);
   	assertEquals(sum, total);
   }
+  public void testsubtract() {
+	  	int num1 = 5;
+	  	int num2 = 2;
+	  	int total = 1;
+	  	int sum = 0;
+	  	sum = Math.subtract(num1, num2);
+	  	assertEquals(sum, total);
+	  }
+  
   
   public void testMulitply() {
   	
