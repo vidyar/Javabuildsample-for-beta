@@ -39,13 +39,6 @@ public class TestMath extends TestCase {
   	sum = Math.multiply(num1, num2);
   	assertEquals("Problem with multiply", sum, total);
   	
-  	
-  	num1 = 5;
-  	num2 = 4;
-  	total = 20;
-  	sum = Math.multiply(num1, num2);
-  	assertEquals("Problem with multiply", sum, total);
-  	
-  }
+   }
     
 }
