@@ -1,7 +1,8 @@
 language: java
 build_environment : Ubuntu1204
 jdk:
-  - openjdk7
+   - oraclejdk7
+   - openjdk7
 notifications:
   email: false
     
