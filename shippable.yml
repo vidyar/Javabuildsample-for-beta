@@ -1,5 +1,5 @@
 language: java
-build_environment : Ubuntu 12.04LTE
+build_environment : Ubuntu1204
 jdk:
   - oraclejdk7
   - openjdk7
