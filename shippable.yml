@@ -3,11 +3,6 @@ build_environment : Ubuntu1204
 jdk:
    - oraclejdk7
    - openjdk7
-script:
-   - rm -Rf cobertura.ser
-   - cobertura-instrument bin/
-   - ant test
-   - cobertura-report --format xml --destination shippable/codecoverage/ --source /src
 notifications:
   email: false
     
