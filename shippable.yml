@@ -5,8 +5,9 @@ jdk:
    - openjdk7
 script:
    - rm -Rf cobertura.ser
-   - cobertura-instrument src/
-   - cobertura-report --format xml --datafile cobertura.ser --destination shippable/codecoverage/
+   - cobertura-instrument bin/
+   - ant test
+   - cobertura-report --format xml --destination shippable/codecoverage/ --source /src
 notifications:
   email: false
     
