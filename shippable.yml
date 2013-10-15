@@ -4,8 +4,5 @@ jdk:
   - oraclejdk7
   - openjdk7
 notifications:
-  email:
-    recipients:
-      - vidya@shippable.com
-    on_success:  change
-    on_failure:  change 
+  email: false
+    
