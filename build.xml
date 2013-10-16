@@ -1,102 +1,117 @@
-<project name="SampleJUnitTests" default="dist" basedir=".">
-    <description>
-        Sample JUnit Tests
-    </description>
-  <!-- set global properties for this build -->
+<?xml version="1.0" encoding="UTF-8"?>
 
-  <property name="project_name" value="junitSamples"/>
-  <property name="src" location="src"/>
-  <property name="build" location="bin"/>
-  <property name="dist"  location="dist"/>
-  <property name="lib"  location="lib"/>
-  <property name="res"  location="res"/>
-  <property name="reports" location="shippable"/>
-  <property name="test_reports" location="shippable/testresults" />
-  <property name="coverage_reports" location="shippable/codecoverage" />
-  
-  <!-- the names of various distributable files -->
-  <property name="jar_name" value="${project_name}.jar"/>
-  <property name="war_name" value="${project_name}.war"/>
+<project name="cobertura.examples.basic" default="coverage" basedir=".">
 
-	<!-- top level targets -->
+        <property file="build.properties" />
 
-  <target name="compile" depends="init" description="compile the source code " >
-		<javac srcdir="${src}" destdir="${build}">  
-			<classpath>
-				<fileset dir="lib">
-					<include name="**/*.jar"/>
-				</fileset>
-			</classpath>
-		</javac>
+        <path id="cobertura.classpath">
+                <fileset dir="${cobertura.dir}">
+                        <include name="cobertura.jar" />
+                        <include name="lib/**/*.jar" />
+                </fileset>
+        </path>
 
-  </target>
+        <taskdef classpathref="cobertura.classpath" resource="tasks.properties"/>
 
-  <target name="dist" depends="compile" description="generate the distributable files " >
-  
-    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-    <jar jarfile="${dist}/${jar_name}" basedir="${build}"/>
-  
-  </target>
+        <target name="init">
+                <mkdir dir="${classes.dir}" />
+                <mkdir dir="${instrumented.dir}" />
+                <mkdir dir="${reports.xml.dir}" />
+                <!-- <mkdir dir="${reports.html.dir}" /> -->
+                <mkdir dir="${coverage.xml.dir}" />
+                <!-- <mkdir dir="${coverage.summaryxml.dir}" />
+                <mkdir dir="${coverage.html.dir}" /> -->
+        </target>
 
-  <target name="clean"
-        description="clean up" >
-    <!-- Delete the ${build} and ${dist} directory trees -->
-    <delete dir="${build}"/>
-    <delete dir="${dist}"/>
-    <delete dir="${reports}"/>
-  </target>
+        <target name="compile" depends="init">
+                <javac srcdir="${src.dir}" destdir="${classes.dir}" debug="yes">
+                        <classpath refid="cobertura.classpath" />
+                </javac>
+        </target>
 
-	<target name="run-tests" depends="compile" description="run your test suite" >
+        <target name="instrument" depends="init,compile">
+                <!--
+                        Remove the coverage data file and any old instrumentation.
+                -->
+                <delete file="cobertura.ser"/>
+                <delete dir="${instrumented.dir}" />
+
+                <!--
+                        Instrument the application classes, writing the
+                        instrumented classes into ${build.instrumented.dir}.
+                -->
+                <cobertura-instrument todir="${instrumented.dir}">
+                        <!--
+                                The following line causes instrument to ignore any
+                                source line containing a reference to log4j, for the
+                                purposes of coverage reporting.
+                        -->
+                        <ignore regex="org.apache.log4j.*" />
+
+                        <fileset dir="${classes.dir}">
+                                <!--
+                                        Instrument all the application classes, but
+                                        don't instrument the test classes.
+                                -->
+                                <include name="**/*.class" />
+                                <exclude name="**/*Test.class" />
+                        </fileset>
+                </cobertura-instrument>
+        </target>
+
+        <target name="test" depends="init,compile">
+                <junit fork="yes" dir="${basedir}" failureProperty="test.failed">
+                        <!--
+                                Note the classpath order: instrumented classes are before the
+                                original (uninstrumented) classes.  This is important.
+                        -->
+                        <classpath location="${instrumented.dir}" />
+                        <classpath location="${classes.dir}" />
+
+                        <!--
+                                The instrumented classes reference classes used by the
+                                Cobertura runtime, so Cobertura and its dependencies
+                                must be on your classpath.
+                        -->
+                        <classpath refid="cobertura.classpath" />
+
+                        <formatter type="xml" />
+                        <test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />
+                        <batchtest todir="${reports.xml.dir}" unless="testcase">
+                                <fileset dir="${src.dir}">
+                                        <include name="**/*Test.java" />
+                                </fileset>
+                        </batchtest>
+                </junit>
 		
-		<junit printsummary="yes" haltonfailure="yes" showoutput="yes" >
-			<classpath>
-				<pathelement path="${build}"/>
-				<fileset dir="lib">
-					<include name="**/*.jar"/>
-				</fileset>
-			</classpath>			
-		
- 		  <batchtest fork="yes" todir="${test_reports}">
-		  	<formatter type="xml"/>
-		    <fileset dir="${src}">
-		      <include name="**/*Test*.java"/>
-		    </fileset>
-		  </batchtest>
-		</junit>	
-	</target>
-	
-  <target name ="test" depends="run-tests">
-		<junitreport todir="${reports}">
-		  <fileset dir="${test_reports}/">
-		    <include name="TEST-*.xml"/>
-		   </fileset>
-		  <report format="frames" todir="${reports}\html\"/>
-		</junitreport>
-  </target>
+                <junitreport todir="${reports.xml.dir}">
+                        <fileset dir="${reports.xml.dir}">
+                                <include name="TEST-*.xml" />
+                        </fileset>
+                       <!--  <report format="frames" todir="${reports.html.dir}" /> -->
+                </junitreport>
+        </target>
 
-  <target name ="run" depends="" description="if this project can be run, run it" >
-  	
-  </target>
+        <target name="coverage-check">
+                <cobertura-check branchrate="34" totallinerate="100" />
+        </target>
 
-	<!-- supporting targets -->
-	
-	 <target name="init" description="initialize the build environment" >
-    <!-- Create the time stamp -->
-    <tstamp/>
-    <!-- Create directory structures -->
-    <mkdir dir="${build}"/>
-    <mkdir dir="${lib}"/>
-    <mkdir dir="${dist}/lib"/>
-    <mkdir dir="${reports}"/>
-    <mkdir dir="${reports}/raw"/>
-    <mkdir dir="${test_reports}"/>
-    <mkdir dir="${coverage_reports}"/>
-    <mkdir dir="${reports}/html/"/>
-  </target>
-  
-  <target name="all" depends="clean, test">
-  	
-  </target>
-  
+        <target name="coverage-report">
+                <!--
+                        Generate an XML file containing the coverage data using
+                        the "srcdir" attribute.
+                -->
+                <cobertura-report srcdir="${src.dir}" destdir="${coverage.xml.dir}" format="xml" />
+        </target>
+
+        <target name="clean" description="Remove all files created by the build/test process.">
+                <delete dir="${classes.dir}" />
+                <delete dir="${instrumented.dir}" />
+                <delete dir="${reports.dir}" />
+                <delete file="cobertura.log" />
+                <delete file="cobertura.ser" />
+        </target>
+
+        <target name="coverage" depends="compile,instrument,test,coverage-report" description="Compile, instrument ourself, run the tests and generate JUnit and coverage reports."/>
+
 </project>
-
