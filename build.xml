@@ -57,7 +57,7 @@
         </target>
 
         <target name="test" depends="init,compile">
-                <junit printsummary="yes" haltonfailure="no" showoutput="yes" >
+                <junit haltonfailure="no" showoutput="yes" >
                         <!--
                                 Note the classpath order: instrumented classes are before the
                                 original (uninstrumented) classes.  This is important.
