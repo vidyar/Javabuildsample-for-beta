@@ -1,7 +1,6 @@
 language: java
 build_environment : Ubuntu1204
 jdk:
-   - oraclejdk7
    - openjdk7
 script: 
    - ant coverage
