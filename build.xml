@@ -17,10 +17,7 @@
                 <mkdir dir="${classes.dir}" />
                 <mkdir dir="${instrumented.dir}" />
                 <mkdir dir="${reports.xml.dir}" />
-                <!-- <mkdir dir="${reports.html.dir}" /> -->
                 <mkdir dir="${coverage.xml.dir}" />
-                <!-- <mkdir dir="${coverage.summaryxml.dir}" />
-                <mkdir dir="${coverage.html.dir}" /> -->
         </target>
 
         <target name="compile" depends="init">
@@ -60,7 +57,7 @@
         </target>
 
         <target name="test" depends="init,compile">
-                <junit fork="yes" dir="${basedir}" failureProperty="test.failed">
+                <junit printsummary="yes" haltonfailure="no" showoutput="yes" >
                         <!--
                                 Note the classpath order: instrumented classes are before the
                                 original (uninstrumented) classes.  This is important.
@@ -75,11 +72,11 @@
                         -->
                         <classpath refid="cobertura.classpath" />
 
-                        <formatter type="xml" />
-                        <test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />
-                        <batchtest todir="${reports.xml.dir}" unless="testcase">
+                        
+                        <batchtest fork="yes" todir="${reports.xml.dir}">
+				<formatter type="xml" />
                                 <fileset dir="${src.dir}">
-                                        <include name="**/*Test.java" />
+                                        <include name="**/*Test*.java" />
                                 </fileset>
                         </batchtest>
                 </junit>
@@ -88,7 +85,6 @@
                         <fileset dir="${reports.xml.dir}">
                                 <include name="TEST-*.xml" />
                         </fileset>
-                       <!--  <report format="frames" todir="${reports.html.dir}" /> -->
                 </junitreport>
         </target>
 
