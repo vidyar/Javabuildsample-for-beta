@@ -81,11 +81,7 @@
                         </batchtest>
                 </junit>
 		
-                <junitreport todir="${reports.xml.dir}">
-                        <fileset dir="${reports.xml.dir}">
-                                <include name="TEST-*.xml" />
-                        </fileset>
-                </junitreport>
+               
         </target>
 
         <target name="coverage-check">
