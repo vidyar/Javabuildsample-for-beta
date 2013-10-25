@@ -2,7 +2,8 @@ language: java
 build_environment : Ubuntu1204
 jdk:
    - oraclejdk7
-scripts : ant coverage
+script: 
+   - ant coverage
 notifications:
   email: false
     
