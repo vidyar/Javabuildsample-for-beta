@@ -15,7 +15,7 @@ public class TestCalc extends TestCase {
   public void testAddForTest2() {
   	int num1 = 3;
   	int num2 = 2;
-  	int total = 5;
+  	int total = 6;
   	int sum = 0;
   	sum = Math.add(num1, num2);
   	assertEquals(sum, total);
@@ -23,7 +23,7 @@ public class TestCalc extends TestCase {
   public void testsubtractForTest2() {
 	  	int num1 = 5;
 	  	int num2 = 2;
-	  	int total = 3;
+	  	int total = 6;
 	  	int sum = 0;
 	  	sum = Math.subtract(num1, num2);
 	  	assertEquals(sum, total);
@@ -34,7 +34,7 @@ public class TestCalc extends TestCase {
   	
   	int num1 = 3; 
   	int num2 = 7; 
-  	int total = 21;
+  	int total = 20;
   	int sum = 0;
   	sum = Math.multiply(num1, num2);
   	assertEquals("Problem with multiply", sum, total);
