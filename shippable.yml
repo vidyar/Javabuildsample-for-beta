@@ -5,4 +5,4 @@ jdk:
 script: 
    - ant coverage
 notifications:
-  email: false
+  email: vidyac.raghav@gmail.com
