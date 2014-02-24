@@ -4,5 +4,6 @@ jdk:
    - oraclejdk7
 script: 
    - ant coverage
+   
 notifications:
   email: vidyac.raghav@gmail.com
