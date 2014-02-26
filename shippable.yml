@@ -9,5 +9,5 @@ script:
 notifications:
  
   email: 
-    recipients:
+    
       - vidyac.raghav@gmail.com
