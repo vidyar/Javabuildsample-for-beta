@@ -6,5 +6,6 @@ jdk:
 script: 
    - ant coverage
 notifications:
-  email: false   
+  email: 
+  vidya@shippable.com
 
