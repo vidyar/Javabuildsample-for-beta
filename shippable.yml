@@ -7,5 +7,5 @@ script:
    - ant coverage
 notifications:
   email: 
-   vidya@shippable.com
+   - vidya@shippable.com
 
