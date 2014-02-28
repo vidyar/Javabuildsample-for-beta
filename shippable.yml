@@ -5,8 +5,3 @@ jdk:
 script: 
    - ant coverage
 
-notifications:
- 
-  email: 
-    
-      - false
