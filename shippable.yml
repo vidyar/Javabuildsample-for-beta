@@ -10,10 +10,7 @@ notifications:
    - vidya@shippable.com
    - vidya_test1@yahoo.in
     
-  on_success: always
-  on_failure: change
-   
-   
+  
    
    
 
