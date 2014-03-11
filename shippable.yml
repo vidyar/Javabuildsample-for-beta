@@ -7,7 +7,6 @@ script:
    - ant coverage
 notifications:
   email: 
-   
    - vidya_test1@yahoo.in
     
   
