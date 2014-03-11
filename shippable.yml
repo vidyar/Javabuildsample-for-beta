@@ -6,7 +6,9 @@ jdk:
 script: 
    - ant coverage
 notifications:
-  email: vidya@shippable.com
+  email: 
+   - vidya@shippable.com
+   - vidya_test1@yahoo.in
     
   on_success: always
   on_failure: change
