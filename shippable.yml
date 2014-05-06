@@ -10,8 +10,6 @@ script:
 notifications:
   email: 
    - vidya_test1@yahoo.in
-   - vidya@shippable.com
-   - vidyac.raghav@gmail.com
     
   
    
