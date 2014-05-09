@@ -34,7 +34,7 @@ public class TestMath extends TestCase {
   	
   	int num1 = 3; 
   	int num2 = 7; 
-  	int total = 20;
+  	int total = 21;
   	int sum = 0;
   	sum = Math.multiply(num1, num2);
   	assertEquals("Problem with multiply", sum, total);
