@@ -1,18 +1,16 @@
 language: java
 
-jdk:
-   - oraclejdk7
-   - openjdk7
+#jdk:
+ #  - oraclejdk7
+  # - openjdk7
    
    
 script: 
    - ant coverage
-notifications:
-  email: 
-   - vidya_test1@yahoo.in
-    
-  
-   
+
+matrix:
+    include:
+      - jdk: openjdk7
    
 
 #testing
