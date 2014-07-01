@@ -1,10 +1,9 @@
 language: java
 
 jdk:
-   - oraclejdk7
+  - oraclejdk7
    #- openjdk7
-   
-   
+
 script: 
    - ant coverage
 
