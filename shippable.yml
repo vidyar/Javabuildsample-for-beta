@@ -7,9 +7,7 @@ script:
 matrix:
     include:
       - jdk: openjdk7
-   
-
-#testing
+  #testing
 after_archive:
       
       - echo $SHIPPABLE_ARCHIVE_DOWNLOAD_URL
